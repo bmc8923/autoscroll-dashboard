@@ -17,12 +17,12 @@
     }
 
     iframe {
-      height: 600vh; /* 600x screen height */
+      height: 600vh; /* Tall content */
       width: 100%;
       border: none;
       position: absolute;
       top: 0;
-      animation: scrollIframe 300s linear infinite;
+      animation: scrollIframe 150s linear infinite; /* 2x speed */
     }
 
     @keyframes scrollIframe {
@@ -30,10 +30,10 @@
         top: 0;
       }
       50% {
-        top: -500vh; /* scroll up by visible height less than total */
+        top: -500vh; /* Scroll down */
       }
       100% {
-        top: 0;
+        top: 0;      /* Scroll back up */
       }
     }
   </style>

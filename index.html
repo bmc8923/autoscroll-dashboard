@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auto-Scrolling Appsmith App</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .scroll-frame {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    iframe {
+      height: 200vh; /* double the screen height to scroll through */
+      width: 100%;
+      border: none;
+      position: absolute;
+      top: 0;
+      animation: scrollIframe 60s linear infinite;
+    }
+
+    @keyframes scrollIframe {
+      0% {
+        top: 0;
+      }
+      50% {
+        top: -100vh;
+      }
+      100% {
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="scroll-frame">
+  <iframe src="https://app.appsmith.com/app/monthly-line-move-dashboard-autoscroll/page1-6880bd7cf99c9f7cc177c984"></iframe>
+</div>
+
+</body>
+</html>

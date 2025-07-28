@@ -17,12 +17,12 @@
     }
 
     iframe {
-      height: 6000px; /* Full app height */
+      height: 600vh; /* 600x screen height */
       width: 100%;
       border: none;
       position: absolute;
       top: 0;
-      animation: scrollIframe 180s linear infinite;
+      animation: scrollIframe 300s linear infinite;
     }
 
     @keyframes scrollIframe {
@@ -30,7 +30,7 @@
         top: 0;
       }
       50% {
-        top: -4920px; /* 6000px - 1080px */
+        top: -500vh; /* scroll up by visible height less than total */
       }
       100% {
         top: 0;

@@ -17,12 +17,12 @@
     }
 
     iframe {
-      height: 600vh; /* Tall content */
+      height: 600vh;
       width: 100%;
       border: none;
       position: absolute;
       top: 0;
-      animation: scrollIframe 150s linear infinite; /* 2x speed */
+      animation: scrollIframe 150s linear infinite;
     }
 
     @keyframes scrollIframe {
@@ -30,10 +30,10 @@
         top: 0;
       }
       50% {
-        top: -500vh; /* Scroll down */
+        top: -510vh; /* Corrected scroll amount */
       }
       100% {
-        top: 0;      /* Scroll back up */
+        top: 0;
       }
     }
   </style>

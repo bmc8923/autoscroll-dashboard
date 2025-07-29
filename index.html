@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auto-Scrolling Appsmith Embed</title>
+  <title>Smooth Auto-Scrolling Appsmith Embed</title>
   <style>
-    /* Reset margins, hide overflow */
+    /* Reset margins, hide overflow on body */
     html, body {
       margin: 0;
       padding: 0;
@@ -20,44 +20,58 @@
       overflow: hidden;
     }
 
+    /* Iframe flows in document and can be scrolled via its container */
     .scroll-frame iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+      display: block;
       width: 100%;
-      /* Adjust this to match the approximate length of your dashboard: */
+      /* Adjust to match your dashboard length (e.g. 8× viewport) */
       height: 800vh;
       border: none;
-      /* Animate vertical scrolling */
-      animation: scrollIframe 90s linear infinite;
-    }
-
-    @keyframes scrollIframe {
-      /* Start at top */
-      0% {
-        transform: translateY(0);
-      }
-      /* Move iframe up by its full height minus one viewport height */
-      80% {
-        transform: translateY(calc(-100% + 100vh));
-      }
-      /* Snap back to top */
-      81%, 100% {
-        transform: translateY(0);
-      }
     }
   </style>
 </head>
 <body>
 
   <div class="scroll-frame">
-    <!-- Use the /embed/ URL to hide Appsmith's header/sidebar for a cleaner view -->
+    <!-- /embed/ URL hides Appsmith's UI for cleaner view -->
     <iframe 
       src="https://app.appsmith.com/embed/monthly-line-move-dashboard-autoscroll/page1-6880bd7cf99c9f7cc177c984"
       loading="lazy"
       title="Monthly Line Move Dashboard"
     ></iframe>
   </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      const container = document.querySelector('.scroll-frame');
+      const iframe = container.querySelector('iframe');
+
+      // Compute total scrollable distance
+      const iframeHeight = parseFloat(getComputedStyle(iframe).height);
+      const viewportHeight = container.clientHeight;
+      const maxScroll = iframeHeight - viewportHeight;
+
+      const duration = 90 * 1000; // 90 seconds
+      let startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        let progress = elapsed / duration;
+        if (progress > 1) {
+          // Restart loop
+          startTime = timestamp;
+          progress = 0;
+        }
+        // Smooth linear scroll via scrollTop
+        container.scrollTop = progress * maxScroll;
+        requestAnimationFrame(step);
+      }
+
+      // Kick off the animation
+      requestAnimationFrame(step);
+    });
+  </script>
 
 </body>
 </html>

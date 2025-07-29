@@ -1,54 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Auto-Scrolling Appsmith App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto-Scrolling Appsmith Embed</title>
   <style>
+    /* Reset margins, hide overflow */
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
       height: 100%;
+      overflow: hidden;
     }
 
+    /* Container masks overflow and holds the iframe */
     .scroll-frame {
+      position: relative;
       height: 100vh;
       overflow: hidden;
-      position: relative;
     }
 
-    iframe {
-      height: 800vh; /* Full Appsmith app height */
-      width: 100%;
-      border: none;
+    .scroll-frame iframe {
       position: absolute;
       top: 0;
+      left: 0;
+      width: 100%;
+      /* Adjust this to match the approximate length of your dashboard: */
+      height: 800vh;
+      border: none;
+      /* Animate vertical scrolling */
       animation: scrollIframe 90s linear infinite;
     }
 
     @keyframes scrollIframe {
+      /* Start at top */
       0% {
-        top: 0;
+        transform: translateY(0);
       }
+      /* Move iframe up by its full height minus one viewport height */
       80% {
-        top: -700vh; /* Scroll down */
+        transform: translateY(calc(-100% + 100vh));
       }
-      81% {
-        top: 0;      /* Snap to top instantly */
-      }
-      100% {
-        top: 0;      /* Hold at top briefly */
+      /* Snap back to top */
+      81%, 100% {
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
 
-<div class="scroll-frame">
-  <iframe 
-    src="https://app.appsmith.com/app/monthly-line-move-dashboard-autoscroll/page1-6880bd7cf99c9f7cc177c984"
-    loading="lazy"
-  ></iframe>
-</div>
+  <div class="scroll-frame">
+    <!-- Use the /embed/ URL to hide Appsmith's header/sidebar for a cleaner view -->
+    <iframe 
+      src="https://app.appsmith.com/embed/monthly-line-move-dashboard-autoscroll/page1-6880bd7cf99c9f7cc177c984"
+      loading="lazy"
+      title="Monthly Line Move Dashboard"
+    ></iframe>
+  </div>
 
 </body>
 </html>

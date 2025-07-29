@@ -17,23 +17,26 @@
     }
 
     iframe {
-      height: 600vh; /* Your full Appsmith page height */
+      height: 800vh; /* Full Appsmith app height */
       width: 100%;
       border: none;
       position: absolute;
       top: 0;
-      animation: scrollIframe 150s linear infinite;
+      animation: scrollIframe 90s linear infinite;
     }
 
     @keyframes scrollIframe {
       0% {
         top: 0;
       }
-      50% {
-        top: -525vh; /* scroll full page + ¼ screen height */
+      80% {
+        top: -700vh; /* Scroll down */
+      }
+      81% {
+        top: 0;      /* Snap to top instantly */
       }
       100% {
-        top: 0;
+        top: 0;      /* Hold at top briefly */
       }
     }
   </style>
@@ -41,7 +44,10 @@
 <body>
 
 <div class="scroll-frame">
-  <iframe src="https://app.appsmith.com/app/monthly-line-move-dashboard-autoscroll/page1-6880bd7cf99c9f7cc177c984"></iframe>
+  <iframe 
+    src="https://app.appsmith.com/app/monthly-line-move-dashboard-autoscroll/page1-6880bd7cf99c9f7cc177c984"
+    loading="lazy"
+  ></iframe>
 </div>
 
 </body>
